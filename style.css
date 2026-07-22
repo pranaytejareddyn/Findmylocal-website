@@ -138,8 +138,10 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.03em;line-height:1.05;
 .nav.scrolled{background:rgba(6,9,18,.72);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-bottom-color:var(--border)}
 .nav .container{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:11px}
-.brand img{width:40px;height:40px;object-fit:contain}
-.brand b{font-family:var(--font-display);font-weight:800;font-size:16px;letter-spacing:.02em;line-height:1;display:block}
+.brand img{width:44px;height:44px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(34,211,238,.45));animation:logoGlow 3.4s ease-in-out infinite}
+.brand b{font-family:var(--font-display);font-weight:800;font-size:16px;letter-spacing:.02em;line-height:1;display:block;animation:nameGlow 3.4s ease-in-out infinite}
+@keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 5px rgba(59,130,246,.4))}50%{filter:drop-shadow(0 0 13px rgba(34,211,238,.7)) drop-shadow(0 0 22px rgba(52,211,153,.32))}}
+@keyframes nameGlow{0%,100%{text-shadow:0 0 8px rgba(59,130,246,.18)}50%{text-shadow:0 0 16px rgba(34,211,238,.5)}}
 .brand small{display:block;font-size:8px;letter-spacing:.22em;color:var(--faint);margin-top:3px}
 .nav-links{display:flex;align-items:center;gap:4px}
 .nav-links a{
@@ -284,7 +286,7 @@ h1,h2,h3{font-family:var(--font-display);letter-spacing:-.03em;line-height:1.05;
 .feat p{font-size:13px;color:var(--muted);margin:7px 0 0;position:relative;line-height:1.55}
 
 /* ===== App showcase ==================================================== */
-.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.apps{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:780px;margin:0 auto}
 .app-card{padding:28px 24px 0;text-align:center;overflow:hidden;position:relative}
 .app-card h3{font-size:19px;font-weight:800;margin-bottom:6px}
 .app-card p{font-size:13.5px;color:var(--muted);margin:0 auto;max-width:32ch}
