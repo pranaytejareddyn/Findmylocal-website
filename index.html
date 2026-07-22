@@ -3,66 +3,459 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Find My Local — Every Local. Every Service. Every Time.</title>
-  <meta name="description" content="Find My Local connects you with trusted, verified local helpers anytime, anywhere in India — hyperlocal discovery, secure communication, emergency alerts and community trust.">
-  <meta name="keywords" content="Find My Local, local helpers India, hyperlocal services, verified helpers, local assistance, community trust, emergency alerts, India">
+  <title>Find My Local — India's Trusted Hyperlocal Community Platform</title>
+  <meta name="description" content="Find My Local connects every person in India with verified local helpers — hyperlocal discovery, work marketplace, emergency alerts, community trust, secure payments and more. Every Local. Every Service. Every Time.">
+  <meta name="keywords" content="Find My Local, local helpers India, hyperlocal platform, verified helpers, work marketplace, emergency alerts, community trust, local services India">
   <meta name="author" content="Find My Local Private Limited">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0758ad">
+  <meta name="theme-color" content="#05070f">
   <link rel="canonical" href="https://findmylocal.co/">
 
-  <!-- Icons -->
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="apple-touch-icon" href="assets/logo.png">
 
-  <!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Find My Local">
-  <meta property="og:title" content="Find My Local — Every Local. Every Service. Every Time.">
-  <meta property="og:description" content="Connecting India with trusted, verified local assistance anytime, anywhere.">
+  <meta property="og:title" content="Find My Local — India's Trusted Hyperlocal Community Platform">
+  <meta property="og:description" content="Connecting every person in India with verified local assistance. Discovery, work, alerts, trust and payments — unified in one platform.">
   <meta property="og:url" content="https://findmylocal.co/">
   <meta property="og:image" content="https://findmylocal.co/assets/india-network-map.jpg">
   <meta property="og:image:alt" content="Find My Local — India hyperlocal network">
   <meta property="og:locale" content="en_IN">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Find My Local — Every Local. Every Service. Every Time.">
-  <meta name="twitter:description" content="Connecting India with trusted, verified local assistance anytime, anywhere.">
+  <meta name="twitter:title" content="Find My Local — India's Trusted Hyperlocal Community Platform">
+  <meta name="twitter:description" content="Connecting every person in India with verified local assistance, anytime, anywhere.">
   <meta name="twitter:image" content="https://findmylocal.co/assets/india-network-map.jpg">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Structured data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Find My Local Private Limited",
-    "url": "https://findmylocal.co/",
-    "logo": "https://findmylocal.co/assets/logo.png",
-    "description": "Find My Local connects you with trusted, verified local helpers anytime, anywhere in India.",
-    "email": "Admin.support@findmylocal.co",
-    "areaServed": "IN",
-    "slogan": "Every Local. Every Service. Every Time. All in One Place."
-  }
+  {"@context":"https://schema.org","@type":"Organization","name":"Find My Local Private Limited","url":"https://findmylocal.co/","logo":"https://findmylocal.co/assets/logo.png","description":"India's trusted hyperlocal community platform connecting people with verified local helpers.","email":"Admin.support@findmylocal.co","areaServed":"IN","slogan":"Every Local. Every Service. Every Time. All in One Place."}
   </script>
 </head>
 <body>
+
+<!-- ===== SVG icon sprite (Lucide-style, stroke=currentColor) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+  <g id="s" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></g>
+  </defs>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15 8.5 22 9.3 17 14l1.2 7L12 17.8 5.8 21 7 14 2 9.3 9 8.5Z"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13A4 4 0 0 1 16 11"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-11.9 7.6L3 21l1.9-6.1A8.4 8.4 0 1 1 21 11.5Z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h8"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="m6 3 15 9-15 9V3Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 21v-6h6v6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21l8.8-8.3a5 5 0 0 0 0-7.1Z"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"/><path d="M17 7h4v4"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="4"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-switch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M8 10v7"/><path d="M8 7v.01"/><path d="M12 17v-4a2 2 0 0 1 4 0v4"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z"/></symbol>
+  <symbol id="i-x2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16"/><path d="M20 4 4 20"/></symbol>
+</svg>
+
+<div class="bg-fx" aria-hidden="true">
+  <div class="grid"></div>
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+
 <a class="skip" href="#main">Skip to content</a>
-<header class="site-header"><a class="brand" href="#home" aria-label="Find My Local home"><img src="assets/logo.png" alt="Find My Local logo"><span><b>FIND MY LOCAL</b><small>PRIVATE LIMITED</small></span></a><button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button><nav aria-label="Primary navigation"><a href="#home">Home</a><a href="#explore">Features</a><a href="#how-find-my-local-works">How It Works</a><a href="#how-find-my-local-helps-india">Benefits</a><a href="#vision">Vision &amp; Mission</a><a href="#contact">Contact</a></nav></header>
-<main id="main">
-  <section id="home" class="hero"><div class="hero-copy reveal"><p class="eyebrow">India’s trusted hyperlocal network</p><h1><span>Every Local.</span><span>Every Service.</span><span>Every Time.</span><span>All in One Place.</span></h1><p class="lede">Find My Local connects you with trusted and verified local helpers anytime, anywhere in India.</p><div class="actions"><a class="button primary" href="#explore">Explore Find My Local <i>→</i></a><a class="button ghost" href="#how-find-my-local-works">How It Works</a></div><div class="proof"><b>One trusted network</b><span>Local help, right where you are</span></div></div>
-    <div class="map-card reveal" aria-label="India local network map">
-      <img class="provided-india-map" src="assets/india-network-map.jpg" alt="India map with connected lines and glowing network points">
+
+<!-- ===== Nav ===== -->
+<header class="nav" id="nav">
+  <div class="container">
+    <a class="brand" href="#home" aria-label="Find My Local home">
+      <img src="assets/logo.png" alt="Find My Local logo" width="40" height="40">
+      <span><b>FIND MY LOCAL</b><small>PRIVATE LIMITED</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#map">Coverage</a>
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#apps">Apps</a>
+      <a href="#impact">Impact</a>
+      <a href="#investor">Investors</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="#apps"><svg class="ico" width="16" height="16"><use href="#i-download"/></svg>Get the App</a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
     </div>
-  </section>
-  <section id="explore" class="explore section"><div class="section-head reveal"><p class="eyebrow">Discover the platform</p><h2>Explore Find My Local</h2><p>Click on any topic to learn more.</p></div><div class="topic-grid" id="topicGrid"></div></section>
-  <div id="topicSections"></div>
-  <section id="contact" class="contact section"><div class="feedback-panel reveal"><p class="eyebrow">We value your feedback</p><h2>Help us build a stronger local network.</h2><form id="feedbackForm"><label>Your Name<input required name="name" autocomplete="name"></label><label>Email <em>(Optional)</em><input type="email" name="email" autocomplete="email"></label><fieldset><legend>Your Rating</legend><div class="stars" role="radiogroup" aria-label="Your rating"><button type="button" data-rating="1">★</button><button type="button" data-rating="2">★</button><button type="button" data-rating="3">★</button><button type="button" data-rating="4">★</button><button type="button" data-rating="5">★</button></div></fieldset><label>Your Feedback / Comments<textarea required name="feedback" rows="4"></textarea></label><button class="button primary" type="submit">Submit feedback <i>→</i></button><p class="form-note" id="formNote" aria-live="polite"></p></form></div><aside class="support-panel reveal"><div class="mail-icon">✉<span></span></div><p class="eyebrow">We are here to help!</p><h2>Let’s make local assistance easier.</h2><p>For any support, queries or assistance, please reach out to us.</p><a href="mailto:Admin.support@findmylocal.co">Admin.support@findmylocal.co</a><small>We typically respond within 24 hours.</small></aside></section>
-</main><footer><a class="brand" href="#home"><img src="assets/logo.png" alt=""><span><b>FIND MY LOCAL</b><small>PRIVATE LIMITED</small></span></a><p>© 2026 Find My Local Private Limited. All Rights Reserved.</p><q>Every Local. Every Service. Every Time. All in One Place.</q></footer><script src="script.js"></script></body></html>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===== Hero ===== -->
+<section id="home" class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="hero-badge"><span class="dot"></span> India's trusted hyperlocal network</span>
+      <h1>
+        <span class="line"><span class="grad-text">Every Local.</span></span>
+        <span class="line"><span>Every Service.</span></span>
+        <span class="line"><span>All in one place.</span></span>
+      </h1>
+      <p class="lede">Find My Local connects every person in India with verified local helpers — discovery, work, emergency alerts, trust and payments, unified in one beautifully simple platform.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#apps"><svg class="ico"><use href="#i-download"/></svg>Download App</a>
+        <a class="btn btn-ghost" href="#how"><svg class="ico"><use href="#i-play"/></svg>Watch Demo</a>
+      </div>
+      <div class="hero-cta-row2">
+        <a class="mini-cta" href="#how"><svg class="ico"><use href="#i-users"/></svg>Become a Helper</a>
+        <a class="mini-cta" href="#features"><svg class="ico"><use href="#i-layers"/></svg>Explore Features</a>
+        <a class="mini-cta" href="#investor"><svg class="ico"><use href="#i-briefcase"/></svg>Investor Pitch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="s"><b data-count="28" data-suffix="+">0</b><span>States &amp; UTs mapped</span></div>
+        <div class="s"><b data-count="750" data-suffix="+">0</b><span>Districts reachable</span></div>
+        <div class="s"><b data-count="100" data-suffix="%">0</b><span>Verified-first design</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-halo" aria-hidden="true"></div>
+      <div class="phone" role="img" aria-label="Find My Local app preview showing nearby verified helpers">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="ps-head">
+            <div class="h">Nearby Helpers</div>
+            <div class="sub">Hyderabad, Telangana · 3 online</div>
+          </div>
+          <div class="ps-search"><svg class="ico"><use href="#i-search"/></svg> Search local help…</div>
+          <div class="ps-card"><div class="ps-av">RK</div><div><div class="nm">Ramesh K.</div><div class="mt">Translation · 4.9 ★</div></div><span class="ps-badge">Verified</span></div>
+          <div class="ps-card"><div class="ps-av">SP</div><div><div class="nm">Sunita P.</div><div class="mt">Elder care · 4.8 ★</div></div><span class="ps-badge">Verified</span></div>
+          <div class="ps-card"><div class="ps-av">AM</div><div><div class="nm">Arjun M.</div><div class="mt">Local guide · 5.0 ★</div></div><span class="ps-badge">Verified</span></div>
+        </div>
+      </div>
+      <div class="floaty-chip fc1"><svg class="ico"><use href="#i-shield"/></svg> ID Verified</div>
+      <div class="floaty-chip fc2"><svg class="ico"><use href="#i-bell"/></svg> Alert delivered</div>
+      <div class="floaty-chip fc3"><svg class="ico"><use href="#i-star"/></svg> 4.9 trust score</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Trust strip ===== -->
+<div class="trust-strip">
+  <div class="container">
+    <div class="row">
+      <span><svg class="ico"><use href="#i-shield"/></svg> Verified-first onboarding</span>
+      <span><svg class="ico"><use href="#i-lock"/></svg> Privacy by design</span>
+      <span><svg class="ico"><use href="#i-alert"/></svg> Community emergency alerts</span>
+      <span><svg class="ico"><use href="#i-pin"/></svg> Village-to-state coverage</span>
+      <span><svg class="ico"><use href="#i-zap"/></svg> Real-time everything</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Interactive India map ===== -->
+<section id="map" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> Coverage &amp; expansion</span>
+      <h2>One platform, <span class="grad-text">built for all of India</span></h2>
+      <p>Explore active regions and where we're heading next. Tap any highlighted state to see helpers, services and expansion plans.</p>
+    </div>
+    <div class="map-wrap">
+      <div class="map-stage reveal">
+        <svg viewBox="0 0 450 620" role="group" aria-label="Interactive map of India">
+          <defs>
+            <linearGradient id="landg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0e2a52"/><stop offset="0.55" stop-color="#0a2038"/><stop offset="1" stop-color="#07182c"/>
+            </linearGradient>
+          </defs>
+          <path class="map-land" d="M123 81 L145 64 169 69 185 50 205 62 221 45 244 57 264 48 284 60 307 56 328 74 354 78 372 94 391 99 408 125 429 132 416 150 433 163 421 182 402 185 390 203 364 211 351 232 330 239 321 258 300 268 291 296 278 313 268 348 255 375 251 409 238 442 228 476 211 507 195 548 178 583 163 606 146 585 136 555 119 529 106 498 94 466 84 431 73 402 67 371 76 341 87 318 94 291 104 268 102 245 115 220 111 201 128 181 123 159 139 140 131 118 143 101 Z"/>
+          <g id="hotspots"></g>
+        </svg>
+      </div>
+      <div class="map-panel glass reveal" id="mapPanel" aria-live="polite">
+        <!-- filled by JS -->
+      </div>
+    </div>
+    <div class="map-legend reveal">
+      <span class="lg-active"><i></i> Active now</span>
+      <span class="lg-soon"><i></i> Coming soon</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== How it works ===== -->
+<section id="how" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> How it works</span>
+      <h2>From a need to a <span class="grad-text">trusted connection</span></h2>
+      <p>A guided, human-first journey — every step designed around safety, clarity and trust.</p>
+    </div>
+    <div class="steps" id="steps"></div>
+  </div>
+</section>
+
+<!-- ===== Features ===== -->
+<section id="features" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> The platform</span>
+      <h2>A connected feature <span class="grad-text">ecosystem</span></h2>
+      <p>Discovery, work, emergencies, communication, payments, reviews and agreements — engineered to work together.</p>
+    </div>
+    <div class="feat-grid" id="features-grid"></div>
+  </div>
+</section>
+
+<!-- ===== App showcase ===== -->
+<section id="apps" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> Built for every role</span>
+      <h2>Three experiences, <span class="grad-text">one network</span></h2>
+      <p>A polished app for users and helpers, and a powerful portal for regional operations.</p>
+    </div>
+    <div class="apps">
+      <div class="app-card glass reveal">
+        <h3>User App</h3><p>Find, chat with and hire verified local helpers in seconds.</p>
+        <div class="app-shot"><div class="scr">
+          <div class="app-hd u"><div class="t">Discover Helpers</div><div class="s">Nearby · Verified</div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+        </div></div>
+      </div>
+      <div class="app-card glass reveal" data-delay="1">
+        <h3>Helper App</h3><p>Get discovered, accept work, earn and build community trust.</p>
+        <div class="app-shot"><div class="scr">
+          <div class="app-hd h"><div class="t">Your Dashboard</div><div class="s">Online · 3 requests</div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+        </div></div>
+      </div>
+      <div class="app-card glass reveal" data-delay="2">
+        <h3>Admin Portal</h3><p>Verification, moderation, alerts and region operations at scale.</p>
+        <div class="app-shot"><div class="scr">
+          <div class="app-hd a"><div class="t">Operations</div><div class="s">Region control</div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="mini-row"><div class="d"></div><div class="tx"><div class="l1"></div><div class="l2"></div></div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Post a Work flow ===== -->
+<section id="post" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> Post a Work</span>
+      <h2>A reverse marketplace, <span class="grad-text">made simple</span></h2>
+      <p>Post what you need and let nearby verified helpers come to you — from request to review.</p>
+    </div>
+    <div class="flow" id="flow"></div>
+  </div>
+</section>
+
+<!-- ===== Community impact ===== -->
+<section id="impact" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> Community impact</span>
+      <h2>Built to grow <span class="grad-text">every local community</span></h2>
+      <p>Designed for scale from day one — village to town to city to state.</p>
+    </div>
+    <div class="impact">
+      <div class="impact-grid reveal">
+        <div class="impact-cell glass"><div class="num" data-count="12000" data-suffix="+">0</div><div class="lbl">Helper capacity onboarded-ready</div></div>
+        <div class="impact-cell glass"><div class="num" data-count="5000" data-suffix="+">0</div><div class="lbl">Villages &amp; towns addressable</div></div>
+        <div class="impact-cell glass"><div class="num" data-count="28" data-suffix="+">0</div><div class="lbl">States &amp; UTs supported</div></div>
+        <div class="impact-cell glass"><div class="num" data-count="50" data-suffix="+">0</div><div class="lbl">Service categories</div></div>
+        <div class="impact-cell glass"><div class="num" data-count="24" data-suffix="/7">0</div><div class="lbl">Emergency alert coverage</div></div>
+        <div class="impact-cell glass"><div class="num" data-count="100" data-suffix="%">0</div><div class="lbl">Human-verified network</div></div>
+      </div>
+      <div class="graph glass reveal" data-delay="1">
+        <h4>Network growth model</h4>
+        <div class="sub">Illustrative expansion — village → district → state</div>
+        <div class="bars" id="bars">
+          <div class="col"><div class="fill" data-h="28"></div><div class="cap">Y1</div></div>
+          <div class="col"><div class="fill" data-h="46"></div><div class="cap">Y2</div></div>
+          <div class="col"><div class="fill" data-h="64"></div><div class="cap">Y3</div></div>
+          <div class="col"><div class="fill" data-h="82"></div><div class="cap">Y4</div></div>
+          <div class="col"><div class="fill" data-h="100"></div><div class="cap">Y5</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Trust & safety ===== -->
+<section id="trust" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> Trust &amp; safety</span>
+      <h2>Trust isn't a feature. <span class="grad-text">It's the foundation.</span></h2>
+      <p>Every layer of Find My Local is built to keep communities safe and confident.</p>
+    </div>
+    <div class="trust-grid" id="trust-grid"></div>
+  </div>
+</section>
+
+<!-- ===== Investor / careers ===== -->
+<section id="investor" class="section">
+  <div class="container">
+    <div class="band reveal">
+      <span class="eyebrow" style="margin-bottom:20px"><span class="dot"></span> Partners · Investors · Talent</span>
+      <h2>Building India's largest <span class="grad-text">hyperlocal community platform</span></h2>
+      <p>We're connecting people, local knowledge and everyday needs at national scale. Partner with us, invest in the vision, or help build it.</p>
+      <div class="btns">
+        <a class="btn btn-primary" href="#contact"><svg class="ico"><use href="#i-briefcase"/></svg>Investor Information</a>
+        <a class="btn btn-ghost" href="#contact"><svg class="ico"><use href="#i-users"/></svg>Partner With Us</a>
+      </div>
+      <div class="pill-grid">
+        <a class="pill-link" href="#contact"><svg class="ico"><use href="#i-heart"/></svg>Join Find My Local</a>
+        <a class="pill-link" href="#contact"><svg class="ico"><use href="#i-briefcase"/></svg>Careers</a>
+        <a class="pill-link" href="#contact"><svg class="ico"><use href="#i-camera"/></svg>Media Kit</a>
+        <a class="pill-link" href="#contact"><svg class="ico"><use href="#i-file"/></svg>Press Resources</a>
+        <a class="pill-link" href="#contact"><svg class="ico"><use href="#i-trend"/></svg>Investor Deck</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact / feedback ===== -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> We value your feedback</span>
+      <h2>Help us build a <span class="grad-text">stronger local network</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="panel glass reveal">
+        <h3 style="font-size:22px;font-weight:800">Share your experience</h3>
+        <form class="fb" id="feedbackForm" novalidate>
+          <label>Your Name
+            <input required name="name" autocomplete="name" placeholder="Your full name">
+          </label>
+          <label>Email <em>(optional)</em>
+            <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
+          </label>
+          <fieldset style="border:0;padding:0;margin:0">
+            <legend style="font-size:13px;font-weight:600;color:var(--muted)">Your rating</legend>
+            <div class="stars" role="radiogroup" aria-label="Your rating">
+              <button type="button" data-rating="1" aria-label="1 star">★</button>
+              <button type="button" data-rating="2" aria-label="2 stars">★</button>
+              <button type="button" data-rating="3" aria-label="3 stars">★</button>
+              <button type="button" data-rating="4" aria-label="4 stars">★</button>
+              <button type="button" data-rating="5" aria-label="5 stars">★</button>
+            </div>
+          </fieldset>
+          <label>Your feedback
+            <textarea required name="feedback" rows="4" placeholder="Tell us what you think…"></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit"><svg class="ico"><use href="#i-arrow"/></svg>Submit feedback</button>
+          <p class="note" id="formNote" aria-live="polite"></p>
+        </form>
+      </div>
+      <aside class="panel support-panel glass reveal" data-delay="1">
+        <span class="mail"><svg class="ico"><use href="#i-mail"/></svg></span>
+        <p class="eyebrow" style="background:none;border:0;padding:0">We're here to help</p>
+        <h3 style="font-size:24px;font-weight:800;margin:6px 0 10px">Let's make local assistance easier.</h3>
+        <p style="color:var(--muted);font-size:14.5px;margin:0 0 18px">For any support, queries or partnership discussions, reach out anytime.</p>
+        <a class="mailto" href="mailto:Admin.support@findmylocal.co">Admin.support@findmylocal.co</a>
+        <span class="resp">We typically respond within 24 hours.</span>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="#home"><img src="assets/logo.png" alt="" width="40" height="40"><span><b>FIND MY LOCAL</b><small>PRIVATE LIMITED</small></span></a>
+        <p>India's trusted hyperlocal community platform — connecting every person with verified local assistance, anytime, anywhere.</p>
+        <div class="socials">
+          <a href="#" aria-label="X (Twitter)"><svg class="ico"><use href="#i-x2"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg class="ico"><use href="#i-in"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg class="ico"><use href="#i-ig"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg class="ico"><use href="#i-yt"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Product</h5>
+        <a href="#features">Features</a><a href="#how">How It Works</a><a href="#apps">Apps</a><a href="#post">Post a Work</a><a href="#map">Coverage</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="#investor">Investors</a><a href="#investor">Careers</a><a href="#investor">Partner With Us</a><a href="#investor">Press</a><a href="#impact">Impact</a>
+      </div>
+      <div class="foot-col">
+        <h5>Legal</h5>
+        <a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Community Guidelines</a><a href="#">Grievance Redressal</a><a href="#trust">Trust &amp; Safety</a>
+      </div>
+      <div class="foot-col">
+        <h5>Get the app</h5>
+        <a href="#apps">Download for Android</a><a href="#apps">Download for iOS</a><a href="#contact">Contact Support</a><a href="#contact">Feedback</a><a href="#map">Sitemap</a>
+      </div>
+
+      <div class="newsletter glass">
+        <div>
+          <h4>Stay in the loop</h4>
+          <p>Product updates, new regions and community stories — no spam.</p>
+        </div>
+        <form class="nl-form" id="nlForm" novalidate>
+          <input type="email" name="email" placeholder="Enter your email" aria-label="Email for newsletter" required>
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+        </form>
+        <p class="nl-note" id="nlNote" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="states-strip">
+      <h5>State availability</h5>
+      <div class="states-tags" id="states-tags"></div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2026 Find My Local Private Limited. All Rights Reserved.</span>
+      <span class="q">Every Local. Every Service. Every Time. All in One Place.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

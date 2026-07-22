@@ -1,33 +1,305 @@
-const topics=[
-['About Find My Local','A trusted place where people, local knowledge and everyday needs meet. Find help close to home or wherever your journey takes you.','Community network','Connected communities'],
-['The Problem We Are Solving','Finding dependable local assistance can be uncertain, time-consuming and stressful—especially in a new place or urgent situation.','Search with confidence','Trusted help nearby'],
-['What is Find My Local?','One human-first platform for finding verified local helpers, sharing requirements and building safer connections within communities.','Your local ecosystem','Help • chat • location'],
-['How Find My Local Works','Search or post a requirement, discover nearby verified helpers, agree service details, complete the work and review the experience.','USER ↔ HELPER','Six simple steps'],
-['Users','Whether you are travelling, studying, caring for family or settling somewhere new, local support should be easy to reach.','Traveler • Student','Family • Professional'],
-['Helpers','Local people can share their skills and knowledge—from guidance and translation to elder support, tourism and accommodation.','Available helpers','Skills that matter'],
-['Major Features','A connected feature ecosystem brings discovery, work, emergencies, communication, payments, reviews and agreements together.','FIND MY LOCAL','Everything connected'],
-['Verified Local Helpers','A thoughtful verification journey can include live selfie, government ID and residency proof before a helper becomes discoverable.','IDENTITY VERIFIED','Live selfie • ID • Proof'],
-['Smart Helper Discovery','Discover relevant nearby helpers by location, skills, ratings, distance, service, language and verification status.','NEARBY NOW','Location • Skills • Ratings'],
-['Post a Work','Post what you need, notify relevant nearby helpers, receive interest and choose who to connect with.','POST → MATCH → CONNECT','Local opportunities'],
-['Service Commitment Forms','Keep service details, date and time, pricing, notes and terms clear with a digital commitment form.','SERVICE AGREEMENT','Clear expectations'],
-['Community Trust System','Trust grows through verification, reviews, completed tasks, ratings and meaningful participation in the community.','TRUST SCORE','Reviews • badges • ratings'],
-['Emergency Alert System','An emergency alert can expand from village to town, district and state—reaching nearby community nodes quickly.','EMERGENCY ALERT','Village → State'],
-['Secure Communication','Communicate confidently through chat, voice, media, live location, payment requests and notifications.','SECURE CHANNEL','Chat ↔ Voice ↔ Location'],
-['Payment System','Use clear, secure payment details such as UPI, QR and bank information without imitating any specific payment interface.','SECURE PAYMENT','UPI • QR • Bank'],
-['Helper Gallery','Explore work photos, accommodation photos, local-area images and previous service experiences before you connect.','LOCAL STORIES','Photos with context'],
-['Dual Account Mode','One phone number can support both roles, letting a person switch smoothly between User Mode and Helper Mode.','USER ↕ HELPER','One account, two roles'],
-['Security Features','Layered safety includes biometric app lock, Face ID, fingerprint, OTP, single-device login, secure storage and role-based access.','PROTECTED','Shield • OTP • Biometrics'],
-['How Find My Local Helps India','Trusted communities, local employment, safer travel, emergency support, tourism and newcomer assistance can grow from connected local networks.','INDIA, CONNECTED','Village → Town → City'],
-['Target Audience','Built for travelers, tourists, students, professionals, families, elderly citizens, NGOs, businesses, event organizers and rural communities.','FOR EVERYONE','People & communities'],
-['Vision','To become India’s most trusted hyperlocal community platform by connecting every person with verified local assistance anytime, anywhere.','OUR VISION','A trusted India-wide network'],
-['Mission','To empower local communities, create meaningful earning opportunities, and make trusted human assistance accessible across every village, town, city, and state in India.','OUR MISSION','Communities that grow together'],
-['Why Find My Local is Different','Hyperlocal discovery, verified helpers, work marketplace, emergency alerts, communication, agreements, trust, payments and India-wide support—unified in one platform.','ONE LOCAL PLATFORM','Everything local, connected']
-];
-const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
-const grid=document.querySelector('#topicGrid'),sections=document.querySelector('#topicSections');
-topics.forEach(([title,copy,core,a,b],i)=>{const id=slug(title);grid.insertAdjacentHTML('beforeend',`<a class="topic-card" href="#${id}"><span>${String(i+1).padStart(2,'0')}</span><b>${title}</b><span>Explore →</span></a>`);sections.insertAdjacentHTML('beforeend',`<section id="${id}" class="story section" style="--accent:${['#08a6b5','#4dbd4d','#0865c7'][i%3]};--bg:${i%2?'#f3fbff':'#eafff8'}"><div class="story-copy reveal"><p class="eyebrow">${String(i+1).padStart(2,'0')} / Find My Local</p><h2>${title}</h2><p>${copy}</p><ul><li>${a}</li><li>${b}</li><li>Designed around trusted local connection</li></ul></div><div class="story-visual reveal" aria-label="Animated illustration for ${title}"><div class="visual-core">${core}</div><span class="orbit-item">Verified</span><span class="orbit-item">Nearby</span><span class="orbit-item">Connected</span><span class="orbit-item">Trusted</span><i class="network-dot" style="top:23%;left:32%"></i><i class="network-dot" style="bottom:26%;right:29%"></i></div></section>`)});
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.13});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('nav');toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',open);toggle.textContent=open?'×':'☰'});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰'}));
-addEventListener('scroll',()=>document.querySelector('.site-header').classList.toggle('scrolled',scrollY>10),{passive:true});
-let rating=0;document.querySelectorAll('.stars button').forEach(button=>button.addEventListener('click',()=>{rating=+button.dataset.rating;document.querySelectorAll('.stars button').forEach(b=>{b.classList.toggle('active',+b.dataset.rating<=rating);b.setAttribute('aria-checked',+b.dataset.rating===rating)})}));
-document.querySelector('#feedbackForm').addEventListener('submit',e=>{e.preventDefault();document.querySelector('#formNote').textContent='Thank you. Your feedback is ready to be connected to the website’s backend.';e.target.reset();rating=0;document.querySelectorAll('.stars button').forEach(b=>b.classList.remove('active'))});
+/* Find My Local — premium site interactions (vanilla, no deps) */
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var icon = function (id) { return '<svg class="ico" aria-hidden="true"><use href="#i-' + id + '"/></svg>'; };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(n) { return Math.round(n).toLocaleString('en-IN'); }
+
+  /* ---------- Data ---------- */
+  var STATES = [
+    { id: 'telangana', name: 'Telangana', x: 232, y: 338, status: 'active', sub: 'Live now · founding region',
+      stats: [['1,200+', 'Helper capacity'], ['50+', 'Service types'], ['33', 'Districts'], ['24/7', 'Alert coverage']] },
+    { id: 'andhra', name: 'Andhra Pradesh', x: 262, y: 398, status: 'soon', sub: 'Expansion in planning',
+      stats: [['26', 'Districts'], ['40+', 'Service types'], ['Q2', 'Target launch'], ['High', 'Demand signal']] },
+    { id: 'karnataka', name: 'Karnataka', x: 206, y: 418, status: 'soon', sub: 'Expansion in planning',
+      stats: [['31', 'Districts'], ['45+', 'Service types'], ['Q3', 'Target launch'], ['High', 'Demand signal']] },
+    { id: 'maharashtra', name: 'Maharashtra', x: 172, y: 322, status: 'soon', sub: 'Expansion in planning',
+      stats: [['36', 'Districts'], ['50+', 'Service types'], ['Q3', 'Target launch'], ['Very high', 'Demand signal']] },
+    { id: 'tamilnadu', name: 'Tamil Nadu', x: 250, y: 478, status: 'soon', sub: 'Expansion in planning',
+      stats: [['38', 'Districts'], ['45+', 'Service types'], ['Q4', 'Target launch'], ['High', 'Demand signal']] },
+    { id: 'kerala', name: 'Kerala', x: 212, y: 502, status: 'soon', sub: 'Expansion in planning',
+      stats: [['14', 'Districts'], ['40+', 'Service types'], ['Q4', 'Target launch'], ['High', 'Demand signal']] },
+    { id: 'delhi', name: 'Delhi NCR', x: 198, y: 150, status: 'soon', sub: 'Expansion in planning',
+      stats: [['11', 'Districts'], ['50+', 'Service types'], ['Q2', 'Target launch'], ['Very high', 'Demand signal']] },
+    { id: 'westbengal', name: 'West Bengal', x: 322, y: 262, status: 'soon', sub: 'Expansion in planning',
+      stats: [['23', 'Districts'], ['40+', 'Service types'], ['Q4', 'Target launch'], ['High', 'Demand signal']] }
+  ];
+
+  var STEPS = [
+    ['search', 'Find Helpers', 'Discover verified local helpers nearby by skill, distance, ratings, language and availability.'],
+    ['file', 'Post Work', 'Post a requirement and let relevant nearby helpers come to you — a reverse local marketplace.'],
+    ['alert', 'Raise Alerts', 'Broadcast an emergency from village to town, district and state — reaching community nodes fast.'],
+    ['shield', 'Get Verified', 'A thoughtful verification journey — live selfie, government ID and residency proof build real trust.'],
+    ['check', 'Service Agreements', 'Lock in service details, timing, pricing and terms with a clear digital commitment form.'],
+    ['award', 'Community Trust System', 'Trust grows through verification, reviews, completed work, ratings and genuine participation.'],
+    ['card', 'Payment Requests', 'Share clear, secure payment details — UPI, QR and bank — without imitating any payment app.'],
+    ['switch', 'Dual Account Mode', 'One number, two roles. Switch smoothly between User Mode and Helper Mode whenever you need.']
+  ];
+
+  var FEATURES = [
+    ['shield', 'Verified Helpers', 'Live selfie, ID and residency checks before a helper becomes discoverable.'],
+    ['layers', 'Work Marketplace', 'Post work, match with nearby helpers and connect with the right person.'],
+    ['alert', 'Emergency Alerts', 'Village-to-state alerts reaching nearby community nodes in real time.'],
+    ['award', 'Community Trust Index', 'A living trust score from reviews, jobs, ratings and verification.'],
+    ['pin', 'Local Tourism', 'Guidance, translation and local know-how from trusted residents.'],
+    ['home', 'Accommodation Assistance', 'Find safe, local-verified stays and settling-in support.'],
+    ['file', 'Digital Service Agreements', 'Clear expectations with a structured commitment form.'],
+    ['search', 'Hyperlocal Discovery', 'Filter by location, skills, ratings, distance, service and language.'],
+    ['bell', 'Real-time Notifications', 'Requests, messages, alerts and updates — the moment they happen.'],
+    ['star', 'Reviews & Ratings', 'Two-way, abuse-resistant reviews that keep the network honest.'],
+    ['card', 'Secure Payments', 'Clear UPI, QR and bank details — safe and transparent.'],
+    ['globe', 'Region Operations', 'State, district and village targeting for precise operations.'],
+    ['grid', 'Admin Dashboard', 'Verification, moderation, alerts and RBAC at national scale.'],
+    ['switch', 'Dual Account Mode', 'One account, two roles — user and helper, seamlessly.']
+  ];
+
+  var FLOW = [
+    ['file', 'Post a Work', 'User posts what they need.'],
+    ['bell', 'Helpers Notified', 'Nearby verified helpers receive it.'],
+    ['heart', 'Interest Shown', 'Helpers express interest.'],
+    ['check', 'Agreement Sent', 'A service agreement is shared.'],
+    ['award', 'Work Completed', 'The work gets done, tracked.'],
+    ['star', 'Review Submitted', 'Both sides review the experience.']
+  ];
+
+  var TRUST = [
+    ['shield', 'Verification System', 'Multi-step identity verification with live selfie, ID and residency proof.'],
+    ['lock', 'Privacy & Security', 'Biometric app lock, OTP, single-device login, secure storage and role-based access.'],
+    ['users', 'Community Guidelines', 'Clear, enforced standards that keep every interaction respectful and safe.'],
+    ['alert', 'Emergency Support', 'Rapid community alerting for urgent, real-world situations.'],
+    ['file', 'Legal Compliance', 'Built for Indian regulatory requirements, grievance redressal and transparency.'],
+    ['eye', 'Fraud Prevention', 'Abuse detection, review-integrity checks and proactive moderation.']
+  ];
+
+  var STATE_TAGS = [
+    ['Telangana', true], ['Andhra Pradesh', false], ['Karnataka', false], ['Maharashtra', false],
+    ['Tamil Nadu', false], ['Kerala', false], ['Delhi NCR', false], ['West Bengal', false],
+    ['Gujarat', false], ['Rajasthan', false], ['Uttar Pradesh', false], ['Madhya Pradesh', false],
+    ['Punjab', false], ['Odisha', false], ['Bihar', false], ['Assam', false]
+  ];
+
+  /* ---------- Render: How it works ---------- */
+  var stepsEl = $('#steps');
+  if (stepsEl) {
+    stepsEl.innerHTML = STEPS.map(function (s, i) {
+      return '<div class="step glass reveal">' +
+        '<div class="idx">' + (i + 1) + '</div>' +
+        '<div><div class="k">' + icon(s[0]) + '<span style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)">Step ' + (i + 1) + '</span></div>' +
+        '<h3>' + s[1] + '</h3><p>' + s[2] + '</p></div></div>';
+    }).join('');
+  }
+
+  /* ---------- Render: Features ---------- */
+  var fg = $('#features-grid');
+  if (fg) {
+    fg.innerHTML = FEATURES.map(function (f, i) {
+      return '<div class="feat glass reveal" data-delay="' + (i % 4) + '">' +
+        '<div class="ic">' + icon(f[0]) + '</div><h3>' + f[1] + '</h3><p>' + f[2] + '</p></div>';
+    }).join('');
+  }
+
+  /* ---------- Render: Flow ---------- */
+  var flowEl = $('#flow');
+  if (flowEl) {
+    flowEl.innerHTML = FLOW.map(function (f, i) {
+      return '<div class="flow-step glass reveal" data-delay="' + (i % 4) + '">' +
+        '<div class="fic">' + icon(f[0]) + '</div><h4>' + f[1] + '</h4><p>' + f[2] + '</p></div>';
+    }).join('');
+  }
+
+  /* ---------- Render: Trust ---------- */
+  var tg = $('#trust-grid');
+  if (tg) {
+    tg.innerHTML = TRUST.map(function (t, i) {
+      return '<div class="trust-card glass reveal" data-delay="' + (i % 3) + '">' +
+        '<div class="ic">' + icon(t[0]) + '</div><h3>' + t[1] + '</h3><p>' + t[2] + '</p></div>';
+    }).join('');
+  }
+
+  /* ---------- Render: State tags ---------- */
+  var st = $('#states-tags');
+  if (st) {
+    st.innerHTML = STATE_TAGS.map(function (s) {
+      return '<span class="state-tag' + (s[1] ? ' on' : '') + '"><span class="d"></span>' + s[0] + (s[1] ? '' : ' · soon') + '</span>';
+    }).join('');
+  }
+
+  /* ---------- India map hotspots + panel ---------- */
+  var hs = $('#hotspots');
+  var panel = $('#mapPanel');
+  function renderPanel(s) {
+    if (!panel) return;
+    panel.innerHTML =
+      '<div class="st-name">' + s.name + ' <span class="tag ' + (s.status === 'active' ? 'active">Active' : 'soon">Coming soon') + '</span></div>' +
+      '<div class="st-sub">' + s.sub + '</div>' +
+      '<div class="map-stats">' + s.stats.map(function (p) {
+        return '<div class="map-stat"><b>' + p[0] + '</b><span>' + p[1] + '</span></div>';
+      }).join('') + '</div>';
+  }
+  function selectState(idx) {
+    if (hs) {
+      var groups = hs.querySelectorAll('.hot');
+      for (var i = 0; i < groups.length; i++) groups[i].setAttribute('aria-current', i === idx ? 'true' : 'false');
+    }
+    renderPanel(STATES[idx]);
+  }
+  if (hs) {
+    STATES.forEach(function (s, i) {
+      var g = document.createElementNS(svgNS, 'g');
+      g.setAttribute('class', 'hot' + (s.status === 'soon' ? ' soon' : ''));
+      g.setAttribute('tabindex', '0');
+      g.setAttribute('role', 'button');
+      g.setAttribute('aria-label', s.name + ' — ' + (s.status === 'active' ? 'active' : 'coming soon'));
+      var inner = '';
+      if (s.status === 'active') inner += '<circle class="pulse" cx="' + s.x + '" cy="' + s.y + '" r="8"/>';
+      inner += '<circle class="ring" cx="' + s.x + '" cy="' + s.y + '" r="9"/>';
+      inner += '<circle class="core" cx="' + s.x + '" cy="' + s.y + '" r="3.4"/>';
+      g.innerHTML = inner;
+      var pick = function () { selectState(i); };
+      g.addEventListener('click', pick);
+      g.addEventListener('mouseenter', pick);
+      g.addEventListener('focus', pick);
+      g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+      hs.appendChild(g);
+    });
+    selectState(0);
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------- Counters ---------- */
+  function animateCount(el) {
+    var target = parseFloat(el.getAttribute('data-count')) || 0;
+    var suffix = el.getAttribute('data-suffix') || '';
+    if (reduce) { el.textContent = fmt(target) + suffix; return; }
+    var dur = 1500, start = null;
+    function tick(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  var counters = document.querySelectorAll('[data-count]');
+  if ('IntersectionObserver' in window) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { animateCount(e.target); cio.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    counters.forEach(function (el) { cio.observe(el); });
+  } else {
+    counters.forEach(function (el) { el.textContent = fmt(parseFloat(el.getAttribute('data-count')) || 0) + (el.getAttribute('data-suffix') || ''); });
+  }
+
+  /* ---------- Bar graph ---------- */
+  var bars = $('#bars');
+  if (bars && 'IntersectionObserver' in window) {
+    var bio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          bars.querySelectorAll('.fill').forEach(function (f) { f.style.height = (f.getAttribute('data-h') || 0) + '%'; });
+          bio.unobserve(bars);
+        }
+      });
+    }, { threshold: 0.4 });
+    bio.observe(bars);
+  } else if (bars) {
+    bars.querySelectorAll('.fill').forEach(function (f) { f.style.height = (f.getAttribute('data-h') || 0) + '%'; });
+  }
+
+  /* ---------- Nav scroll + mobile menu ---------- */
+  var nav = $('#nav');
+  var onScroll = function () { if (nav) nav.classList.toggle('scrolled', window.scrollY > 12); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  var toggle = $('.menu-toggle');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.innerHTML = open ? icon('x') : icon('menu');
+    });
+    nav.querySelectorAll('.nav-links a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.innerHTML = icon('menu');
+      });
+    });
+  }
+
+  /* ---------- Parallax (subtle, rAF-throttled) ---------- */
+  if (!reduce) {
+    var halo = $('.hero-halo'), ph = $('.phone');
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function () {
+        var y = window.scrollY;
+        if (y < 900) {
+          if (halo) halo.style.transform = 'translateY(' + (y * 0.12) + 'px)';
+          if (ph) ph.style.transform = 'translateY(' + (y * -0.04) + 'px)';
+        }
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+  /* ---------- Feedback form ---------- */
+  var rating = 0;
+  var starBtns = document.querySelectorAll('.fb .stars button');
+  starBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      rating = +b.dataset.rating;
+      starBtns.forEach(function (x) {
+        x.classList.toggle('active', +x.dataset.rating <= rating);
+        x.setAttribute('aria-checked', +x.dataset.rating === rating ? 'true' : 'false');
+      });
+    });
+  });
+  var fbForm = $('#feedbackForm');
+  if (fbForm) {
+    fbForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var note = $('#formNote');
+      if (!fbForm.name.value.trim() || !fbForm.feedback.value.trim()) {
+        if (note) { note.style.color = 'var(--amber)'; note.textContent = 'Please add your name and feedback.'; }
+        return;
+      }
+      if (note) { note.style.color = 'var(--green)'; note.textContent = 'Thank you! Your feedback has been recorded.'; }
+      fbForm.reset(); rating = 0;
+      starBtns.forEach(function (x) { x.classList.remove('active'); });
+    });
+  }
+
+  /* ---------- Newsletter ---------- */
+  var nl = $('#nlForm');
+  if (nl) {
+    nl.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var note = $('#nlNote');
+      var val = nl.email.value.trim();
+      var ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val);
+      if (note) {
+        note.style.color = ok ? 'var(--green)' : 'var(--amber)';
+        note.textContent = ok ? 'You\'re subscribed — welcome to Find My Local!' : 'Please enter a valid email address.';
+      }
+      if (ok) nl.reset();
+    });
+  }
+})();
