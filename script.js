@@ -9,21 +9,21 @@
 
   /* ---------- Data ---------- */
   var STATES = [
-    { id: 'telangana', name: 'Telangana', x: 232, y: 338, status: 'active', sub: 'Live now · founding region',
+    { code: 'tg', name: 'Telangana', status: 'active', sub: 'Live now · founding region',
       stats: [['1,200+', 'Helper capacity'], ['50+', 'Service types'], ['33', 'Districts'], ['24/7', 'Alert coverage']] },
-    { id: 'andhra', name: 'Andhra Pradesh', x: 262, y: 398, status: 'soon', sub: 'Expansion in planning',
+    { code: 'ap', name: 'Andhra Pradesh', status: 'soon', sub: 'Expansion in planning',
       stats: [['26', 'Districts'], ['40+', 'Service types'], ['Q2', 'Target launch'], ['High', 'Demand signal']] },
-    { id: 'karnataka', name: 'Karnataka', x: 206, y: 418, status: 'soon', sub: 'Expansion in planning',
+    { code: 'ka', name: 'Karnataka', status: 'soon', sub: 'Expansion in planning',
       stats: [['31', 'Districts'], ['45+', 'Service types'], ['Q3', 'Target launch'], ['High', 'Demand signal']] },
-    { id: 'maharashtra', name: 'Maharashtra', x: 172, y: 322, status: 'soon', sub: 'Expansion in planning',
+    { code: 'mh', name: 'Maharashtra', status: 'soon', sub: 'Expansion in planning',
       stats: [['36', 'Districts'], ['50+', 'Service types'], ['Q3', 'Target launch'], ['Very high', 'Demand signal']] },
-    { id: 'tamilnadu', name: 'Tamil Nadu', x: 250, y: 478, status: 'soon', sub: 'Expansion in planning',
+    { code: 'tn', name: 'Tamil Nadu', status: 'soon', sub: 'Expansion in planning',
       stats: [['38', 'Districts'], ['45+', 'Service types'], ['Q4', 'Target launch'], ['High', 'Demand signal']] },
-    { id: 'kerala', name: 'Kerala', x: 212, y: 502, status: 'soon', sub: 'Expansion in planning',
+    { code: 'kl', name: 'Kerala', status: 'soon', sub: 'Expansion in planning',
       stats: [['14', 'Districts'], ['40+', 'Service types'], ['Q4', 'Target launch'], ['High', 'Demand signal']] },
-    { id: 'delhi', name: 'Delhi NCR', x: 198, y: 150, status: 'soon', sub: 'Expansion in planning',
+    { code: 'dl', name: 'Delhi NCR', status: 'soon', sub: 'Expansion in planning',
       stats: [['11', 'Districts'], ['50+', 'Service types'], ['Q2', 'Target launch'], ['Very high', 'Demand signal']] },
-    { id: 'westbengal', name: 'West Bengal', x: 322, y: 262, status: 'soon', sub: 'Expansion in planning',
+    { code: 'wb', name: 'West Bengal', status: 'soon', sub: 'Expansion in planning',
       stats: [['23', 'Districts'], ['40+', 'Service types'], ['Q4', 'Target launch'], ['High', 'Demand signal']] }
   ];
 
@@ -127,6 +127,7 @@
   }
 
   /* ---------- India map hotspots + panel ---------- */
+  var svgMap = document.getElementById('indiaMap');
   var hs = $('#hotspots');
   var panel = $('#mapPanel');
   function renderPanel(s) {
@@ -139,30 +140,44 @@
       }).join('') + '</div>';
   }
   function selectState(idx) {
+    STATES.forEach(function (s, i) {
+      var p = document.getElementById('st-' + s.code);
+      if (p) p.classList.toggle('sel', i === idx);
+    });
     if (hs) {
-      var groups = hs.querySelectorAll('.hot');
-      for (var i = 0; i < groups.length; i++) groups[i].setAttribute('aria-current', i === idx ? 'true' : 'false');
+      var mk = hs.querySelectorAll('.mk');
+      for (var i = 0; i < mk.length; i++) mk[i].setAttribute('aria-current', i === idx ? 'true' : 'false');
     }
     renderPanel(STATES[idx]);
   }
-  if (hs) {
+  if (svgMap) {
     STATES.forEach(function (s, i) {
-      var g = document.createElementNS(svgNS, 'g');
-      g.setAttribute('class', 'hot' + (s.status === 'soon' ? ' soon' : ''));
-      g.setAttribute('tabindex', '0');
-      g.setAttribute('role', 'button');
-      g.setAttribute('aria-label', s.name + ' — ' + (s.status === 'active' ? 'active' : 'coming soon'));
-      var inner = '';
-      if (s.status === 'active') inner += '<circle class="pulse" cx="' + s.x + '" cy="' + s.y + '" r="8"/>';
-      inner += '<circle class="ring" cx="' + s.x + '" cy="' + s.y + '" r="9"/>';
-      inner += '<circle class="core" cx="' + s.x + '" cy="' + s.y + '" r="3.4"/>';
-      g.innerHTML = inner;
+      var p = document.getElementById('st-' + s.code);
+      if (!p) return;
+      p.classList.add('hot');
+      p.classList.add(s.status === 'active' ? 'active' : 'soon');
+      p.setAttribute('tabindex', '0');
+      p.setAttribute('role', 'button');
+      p.setAttribute('aria-label', s.name + ' — ' + (s.status === 'active' ? 'active' : 'coming soon'));
       var pick = function () { selectState(i); };
-      g.addEventListener('click', pick);
-      g.addEventListener('mouseenter', pick);
-      g.addEventListener('focus', pick);
-      g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
-      hs.appendChild(g);
+      p.addEventListener('click', pick);
+      p.addEventListener('mouseenter', pick);
+      p.addEventListener('focus', pick);
+      p.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+      // decorative marker at the state's centroid (bbox center)
+      if (hs) {
+        try {
+          var bb = p.getBBox();
+          var cx = bb.x + bb.width / 2, cy = bb.y + bb.height / 2;
+          var g = document.createElementNS(svgNS, 'g');
+          g.setAttribute('class', 'mk' + (s.status === 'active' ? ' active' : ''));
+          var inner = '';
+          if (s.status === 'active') inner += '<circle class="pulse" cx="' + cx + '" cy="' + cy + '" r="7"/>';
+          inner += '<circle class="ring" cx="' + cx + '" cy="' + cy + '" r="7"/><circle class="core" cx="' + cx + '" cy="' + cy + '" r="2.6"/>';
+          g.innerHTML = inner;
+          hs.appendChild(g);
+        } catch (e) {}
+      }
     });
     selectState(0);
   }
@@ -223,7 +238,14 @@
 
   /* ---------- Nav scroll + mobile menu ---------- */
   var nav = $('#nav');
-  var onScroll = function () { if (nav) nav.classList.toggle('scrolled', window.scrollY > 12); };
+  var scrollBar = document.getElementById('scrollBar');
+  var onScroll = function () {
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 12);
+    if (scrollBar) {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      scrollBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+    }
+  };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -300,6 +322,28 @@
         note.textContent = ok ? 'You\'re subscribed — welcome to Find My Local!' : 'Please enter a valid email address.';
       }
       if (ok) nl.reset();
+    });
+  }
+
+  /* ---------- 3D tilt on app cards (fine pointer only) ---------- */
+  if (!reduce && window.matchMedia && matchMedia('(pointer:fine)').matches) {
+    document.querySelectorAll('.app-card').forEach(function (el) {
+      el.classList.add('tilt');
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        el.classList.remove('reset');
+        el.style.setProperty('--ry', (px * 7).toFixed(2) + 'deg');
+        el.style.setProperty('--rx', (-py * 7).toFixed(2) + 'deg');
+        el.style.setProperty('--ty', '-6px');
+      });
+      el.addEventListener('pointerleave', function () {
+        el.classList.add('reset');
+        el.style.setProperty('--rx', '0deg');
+        el.style.setProperty('--ry', '0deg');
+        el.style.setProperty('--ty', '0');
+      });
     });
   }
 })();
